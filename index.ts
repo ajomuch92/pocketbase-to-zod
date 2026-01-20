@@ -14,6 +14,7 @@ program
   .requiredOption('-e, --email <char>', 'Admin email')
   .requiredOption('-p, --password <char>', 'Admin password')
   .option('-o, --output <char>', 'Output file path', './pocketbase-schema.ts')
+  .option('-s, --split', 'Generate a file per collection', false)
   .action(async (options) => {
     const pb = new PocketBase(options.url);
 
@@ -94,11 +95,24 @@ program
 
         fileContent += `});\n\n`;
         fileContent += `export type ${col.name.charAt(0).toUpperCase() + col.name.slice(1)} = z.infer<typeof ${col.name}Schema>;\n\n`;
+
+        if (options.split) {
+          const outputDir = path.resolve(process.cwd(), path.dirname(options.output));
+          if (!fs.existsSync(outputDir)) {
+            fs.mkdirSync(outputDir, { recursive: true });
+          }
+          const outputPath = path.resolve(outputDir, `${col.name}-schema.ts`);
+          fs.writeFileSync(outputPath, fileContent);
+          console.log(`✅ Schema for collection '${col.name}' generated at: ${outputPath}`);
+          fileContent = `import { z } from 'zod';\n\n`; // Reset for next file
+        }
       }
 
-      const outputPath = path.resolve(process.cwd(), options.output);
-      fs.writeFileSync(outputPath, fileContent);
-      console.log(`✅ Schemas generated successfully at: ${outputPath}`);
+      if (!options.split) {
+        const outputPath = path.resolve(process.cwd(), options.output);
+        fs.writeFileSync(outputPath, fileContent);
+        console.log(`✅ Schemas generated successfully at: ${outputPath}`);
+      }
 
     } catch (error: any) {
       console.error('❌ Error:', error.message);
