@@ -27,6 +27,7 @@ program
       let fileContent = `import { z } from 'zod';\n\n`;
 
       for (const col of collections) {
+        console.log(`--- Generating schema for collection: ${col.name} ---`);
         fileContent += `// Schema for collection: ${col.name}\n`;
         fileContent += `export const ${col.name}Schema = z.object({\n`;
         
@@ -35,7 +36,7 @@ program
         fileContent += `  created: z.string(),\n`;
         fileContent += `  updated: z.string(),\n`;
 
-        for (const field of col.schema) {
+        for (const field of col.fields) {
           let zodType = 'z.any()';
 
           switch (field.type) {
