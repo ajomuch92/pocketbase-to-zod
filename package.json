@@ -4,7 +4,7 @@
   "description": "This project is an utility to generate Zod schemas from Pocketbase instance ",
   "main": "index.js",
   "bin": {
-    "pb-to-zod": "./dist/index.js"
+    "pb-to-zod": "dist/index.js"
   },
   "scripts": {
     "build": "tsc && chmod +x dist/index.js"
