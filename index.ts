@@ -59,16 +59,16 @@ program
               zodType = 'z.string().datetime()'; // PocketBase sends dates as ISO strings
               break;
             case 'select':
-              if (field.options.values) {
+              if (field.options?.values && Array.isArray(field.options.values) && field.options.values.length > 0) {
                 const values = field.options.values.map((v: string) => `'${v}'`).join(', ');
                 zodType = `z.enum([${values}])`;
               }
               break;
             case 'relation':
-              zodType = field.options.maxSelect === 1 ? 'z.string()' : 'z.array(z.string())';
+              zodType = field.options?.maxSelect === 1 ? 'z.string()' : 'z.array(z.string())';
               break;
             case 'file':
-              zodType = field.options.maxSelect === 1 ? 'z.string()' : 'z.array(z.string())';
+              zodType = field.options?.maxSelect === 1 ? 'z.string()' : 'z.array(z.string())';
               break;
             case 'json':
               zodType = 'z.unknown()';
