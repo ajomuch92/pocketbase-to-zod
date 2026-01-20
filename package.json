@@ -1,0 +1,40 @@
+{
+  "name": "pocketbase-to-zod",
+  "version": "1.0.0",
+  "description": "This project is an utility to generate Zod schemas from Pocketbase instance ",
+  "main": "index.js",
+  "bin": {
+    "pb-to-zod": "./dist/index.js"
+  },
+  "scripts": {
+    "build": "tsc && chmod +x dist/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ajomuch92/pocketbase-to-zod.git"
+  },
+  "keywords": [
+    "Zod",
+    "schemas",
+    "pocketbase",
+    "pb",
+    "validations",
+    "instance"
+  ],
+  "author": "Aarón Montes",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ajomuch92/pocketbase-to-zod/issues"
+  },
+  "homepage": "https://github.com/ajomuch92/pocketbase-to-zod#readme",
+  "dependencies": {
+    "commander": "^14.0.2",
+    "pocketbase": "^0.26.6",
+    "zod": "^4.3.5"
+  },
+  "devDependencies": {
+    "@types/node": "^25.0.9",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.3"
+  }
+}
