@@ -55,6 +55,7 @@ program
             case 'text':
             case 'editor':
             case 'url':
+            case 'password':
                 zodType = 'z.string()';
                 break;
             case 'email':
@@ -67,6 +68,7 @@ program
               zodType = 'z.boolean()';
               break;
             case 'date':
+            case 'autodate':
               zodType = 'z.date()'; // PocketBase sends dates as ISO strings
               break;
             case 'select':
@@ -84,6 +86,14 @@ program
             case 'json':
               zodType = 'z.unknown()';
               break;
+          }
+
+          if (field.min && Number.isFinite(field.min)) {
+            zodType += `.min(${field.min})`;
+          }
+
+          if (field.max && Number.isFinite(field.max)) {
+            zodType += `.max(${field.max})`;
           }
 
           if (!field.required) {
