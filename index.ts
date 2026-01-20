@@ -25,8 +25,9 @@ program
       const collections = await pb.collections.getFullList();
 
       let fileContent = `import { z } from 'zod';\n\n`;
+      const filteredCollections = collections.filter(col => !col.system);
 
-      for (const col of collections) {
+      for (const col of filteredCollections) {
         console.log(`--- Generating schema for collection: ${col.name} ---`);
         fileContent += `// Schema for collection: ${col.name}\n`;
         fileContent += `export const ${col.name}Schema = z.object({\n`;
