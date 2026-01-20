@@ -54,9 +54,11 @@ program
             case 'text':
             case 'editor':
             case 'url':
+                zodType = 'z.string()';
+                break;
             case 'email':
-              zodType = 'z.string()';
-              break;
+                zodType = 'z.email()';
+                break;
             case 'number':
               zodType = 'z.number()';
               break;
@@ -64,7 +66,7 @@ program
               zodType = 'z.boolean()';
               break;
             case 'date':
-              zodType = 'z.string().datetime()'; // PocketBase sends dates as ISO strings
+              zodType = 'z.date()'; // PocketBase sends dates as ISO strings
               break;
             case 'select':
               if (field.options?.values && Array.isArray(field.options.values) && field.options.values.length > 0) {
@@ -76,7 +78,7 @@ program
               zodType = field.options?.maxSelect === 1 ? 'z.string()' : 'z.array(z.string())';
               break;
             case 'file':
-              zodType = field.options?.maxSelect === 1 ? 'z.string()' : 'z.array(z.string())';
+              zodType = field.options?.maxSelect === 1 ? 'z.url()' : 'z.array(z.url())';
               break;
             case 'json':
               zodType = 'z.unknown()';
