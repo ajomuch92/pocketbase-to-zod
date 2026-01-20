@@ -20,7 +20,7 @@ npx pocketbase-to-zod [options]
 ## Usage
 
 ```bash
-pocketbase-to-zod --url http://localhost:8090 --email admin@example.com --password yourpassword --output ./schemas.ts
+pocketbase-to-zod --url http://localhost:8090 --email admin@example.com --password yourpassword --output ./schemas.ts --split
 ```
 
 ## Options
@@ -28,6 +28,7 @@ pocketbase-to-zod --url http://localhost:8090 --email admin@example.com --passwo
 - `--email <email>`: Admin email for authentication [Required]
 - `--password <password>`: Admin password for authentication [Required]
 - `--output <file>`: Output file path for generated schemas (default: `./pocketbase-schemas.ts`) [Optional]
+- `--split`: Generate a separate file for each collection [Optional]
 
 ## Example Output
 
