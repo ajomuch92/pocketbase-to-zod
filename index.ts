@@ -36,11 +36,19 @@ program
         
         // Base PocketBase fields
         fileContent += `  id: z.string(),\n`;
-        fileContent += `  created: z.string(),\n`;
-        fileContent += `  updated: z.string(),\n`;
+        fileContent += `  created: z.date(),\n`;
+        fileContent += `  updated: z.date(),\n`;
 
         for (const field of col.fields) {
           let zodType = 'z.any()';
+
+          if (field.hidden) continue;
+
+          if (['id', 'created', 'updated'].includes(field.name)) {
+            continue; // Skip specific fields if needed
+          }
+
+          console.log(`  - Processing field: ${field.name} (type: ${field.type})`);
 
           switch (field.type) {
             case 'text':
