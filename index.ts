@@ -25,7 +25,9 @@ program
       const collections = await pb.collections.getFullList();
 
       let fileContent = `import { z } from 'zod';\n\n`;
-      const filteredCollections = collections.filter(col => !col.system);
+      const filteredCollections = collections.filter((col) => (col.type === 'base' || col.type === 'auth') && !col.system);
+
+      console.log(`--- Generating schemas for ${filteredCollections.length} collections ---`);
 
       for (const col of filteredCollections) {
         console.log(`--- Generating schema for collection: ${col.name} ---`);
