@@ -69,19 +69,19 @@ program
               break;
             case 'date':
             case 'autodate':
-              zodType = 'z.date()'; // PocketBase sends dates as ISO strings
+              zodType = 'z.date()';
               break;
             case 'select':
-              if (field.options?.values && Array.isArray(field.options.values) && field.options.values.length > 0) {
-                const values = field.options.values.map((v: string) => `'${v}'`).join(', ');
+              if (field.values && Array.isArray(field.values) && field.values.length > 0) {
+                const values = field.values.map((v: string) => `'${v}'`).join(', ');
                 zodType = `z.enum([${values}])`;
               }
               break;
             case 'relation':
-              zodType = field.options?.maxSelect === 1 ? 'z.string()' : 'z.array(z.string())';
+              zodType = field?.maxSelect === 1 ? 'z.string()' : 'z.array(z.string())';
               break;
             case 'file':
-              zodType = field.options?.maxSelect === 1 ? 'z.url()' : 'z.array(z.url())';
+              zodType = field?.maxSelect === 1 ? 'z.url()' : 'z.array(z.url())';
               break;
             case 'json':
               zodType = 'z.unknown()';
