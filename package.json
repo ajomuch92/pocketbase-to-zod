@@ -1,8 +1,9 @@
 {
   "name": "pocketbase-to-zod",
-  "version": "1.1.3",
+  "version": "1.1.4",
   "description": "This project is an utility to generate Zod schemas from Pocketbase instance.",
   "main": "index.js",
+  "types": "dist/index.d.ts",
   "bin": {
     "pb-to-zod": "dist/index.js"
   },
