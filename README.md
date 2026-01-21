@@ -20,7 +20,7 @@ npx pocketbase-to-zod [options]
 ## Usage
 
 ```bash
-pocketbase-to-zod --url http://localhost:8090 --email admin@example.com --password yourpassword --output ./schemas.ts --split
+npx pocketbase-to-zod --url http://localhost:8090 --email admin@example.com --password yourpassword --output ./schemas.ts --split
 ```
 
 ## Options
