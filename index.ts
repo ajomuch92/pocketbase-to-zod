@@ -5,6 +5,10 @@ import PocketBase from 'pocketbase';
 import fs from 'fs';
 import path from 'path';
 
+function capitalizeFirstLetter(string: string) {
+  return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
 const program = new Command();
 
 program
@@ -33,7 +37,7 @@ program
       for (const col of filteredCollections) {
         console.log(`--- Generating schema for collection: ${col.name} ---`);
         fileContent += `// Schema for collection: ${col.name}\n`;
-        fileContent += `export const ${col.name}Schema = z.object({\n`;
+        fileContent += `export const ${capitalizeFirstLetter(col.name)}Schema = z.object({\n`;
         
         // Base PocketBase fields
         fileContent += `  id: z.string(),\n`;
@@ -104,7 +108,7 @@ program
         }
 
         fileContent += `});\n\n`;
-        fileContent += `export type ${col.name.charAt(0).toUpperCase() + col.name.slice(1)} = z.infer<typeof ${col.name}Schema>;\n\n`;
+        fileContent += `export type ${capitalizeFirstLetter(col.name)} = z.infer<typeof ${col.name}Schema>;\n\n`;
 
         if (options.split) {
           const outputDir = path.resolve(process.cwd(), path.dirname(options.output));
