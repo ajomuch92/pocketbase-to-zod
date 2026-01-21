@@ -37,15 +37,12 @@ import { z } from "zod";
 
 export const UserSchema = z.object({
   id: z.string(),
-  created: z.string().refine((date) => !isNaN(Date.parse(date)), {
-    message: "Invalid date format",
-  }),
-  updated: z.string().refine((date) => !isNaN(Date.parse(date)), {
-    message: "Invalid date format",
-  }),
+  created: z.date(),
+  updated: z.date(),
   email: z.string().email(),
   verified: z.boolean(),
   username: z.string().min(3).max(50),
+  profilePicture: z.url().optional().nullable(),
   // ... other fields
 });
 
