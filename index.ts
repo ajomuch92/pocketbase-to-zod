@@ -100,6 +100,11 @@ program
             zodType += `.max(${field.max})`;
           }
 
+          if (field.autogeneratePattern || field.pattern) {
+            const pattern = field.autogeneratePattern || field.pattern;
+            zodType += `.regex(new RegExp('${pattern}'))`;
+          }
+
           if (!field.required) {
             zodType += '.optional().nullable()';
           }
