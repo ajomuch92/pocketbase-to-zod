@@ -113,7 +113,7 @@ program
         }
 
         fileContent += `});\n\n`;
-        fileContent += `export type ${capitalizeFirstLetter(col.name)} = z.infer<typeof ${col.name}Schema>;\n\n`;
+        fileContent += `export type ${capitalizeFirstLetter(col.name)} = z.infer<typeof ${capitalizeFirstLetter(col.name)}Schema>;\n\n`;
 
         if (options.split) {
           const outputDir = path.resolve(process.cwd(), path.dirname(options.output));
